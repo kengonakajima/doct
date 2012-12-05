@@ -1,4 +1,4 @@
-require("util.rb")
+require("./util.rb")
 
 #= string-equal
 assert( "abcd" == "abcd" )

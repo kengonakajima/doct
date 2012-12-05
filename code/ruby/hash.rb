@@ -1,4 +1,4 @@
-require "util.rb"
+require "./util.rb"
 
 #= hash-init-lit
 x = { 1=>2, 2=>4, 3=>6 }
