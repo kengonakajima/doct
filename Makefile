@@ -1,6 +1,9 @@
 RUBYSRCS=code/ruby/*.rb
 
 build: test
+	ruby --version
+	node --version
+	lua -v
 	ruby gen.rb db.json
 
 test:
