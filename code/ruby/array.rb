@@ -1,4 +1,4 @@
-require "util.rb"
+require "./util.rb"
 
 #= array-init-lit
 #== ja: 引数を要素として持つ配列を生成する
