@@ -1,4 +1,5 @@
 doct
 ====
 
-doct sources
+Programmer's Programming Reference generator
+
