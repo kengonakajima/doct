@@ -2,10 +2,8 @@ require "util.rb"
 
 #= hash-init-lit
 x = { 1=>2, 2=>4, 3=>6 }
-y = { 1,2, 2,4, 3, 6 }
-
 assert( x[1] == 2 ) 
-assert( y[2] == 4 )
+assert( x[2] == 4 )
 
 #= hash-to-json
 require "rubygems"
