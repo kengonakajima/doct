@@ -35,6 +35,19 @@ assert( ( "ab" "cd" ) == "abcd" )
 x = 123
 assert( "hello#{x}" == "hello123" )
 
+#= string-split-with-string
+ary = "ab cd ef".split(" ")
+assert( ary[0] == "ab" )
+assert( ary[1] == "cd" )
+assert( ary[2] == "ef" )
+
+#= string-split-with-regex
+ary = "ab cd.ef:gh".split(/[ .:]/)
+assert( ary[0] == "ab" );
+assert( ary[1] == "cd" );
+assert( ary[2] == "ef" );
+
+
 
 
 
