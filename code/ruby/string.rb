@@ -111,7 +111,7 @@ assert( ary[1] == "cd" );
 assert( ary[2] == "ef" );
 
 #= string-split-with-limit
-#= ja: splitの第二引数で最大分割数を指定可能
+#== ja: splitの第二引数で最大分割数を指定可能
 ary = "ab,cde,fg".split(",",2)
 assert(ary.size==2)
 assert(ary[0]=="ab")
