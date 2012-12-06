@@ -11,23 +11,23 @@ def processFile(path)
   if path =~ /\.rb$/ then
     lang = "Ruby"
     langprefix = "ruby"
-    part_pattern = /^#=\s?([a-zA-Z\-_]+)\s?$/
-    doc_pattern = /^#==\s?([a-zA-Z]+)\s?:\s?(.*)$/
+    part_pattern = /^#=\s?([a-zA-Z0-9\-_]+)\s?$/
+    doc_pattern = /^#==\s?([a-zA-Z0-9]+)\s?:\s?(.*)$/
   elsif path =~ /\.js$/ then
     lang = "JavaScript"
     langprefix = "js"
-    part_pattern = /^\/\/=\s?([a-zA-Z\-_]+)\s?$/
-    doc_pattern = /^\/\/==\s?([a-zA-Z]+)\s?:\s?(.*)\s?$/
+    part_pattern = /^\/\/=\s?([a-zA-Z0-9\-_]+)\s?$/
+    doc_pattern = /^\/\/==\s?([a-zA-Z0-9]+)\s?:\s?(.*)\s?$/
   elsif path =~ /\.lua$/ then
     lang = "Lua"
     langprefix = "lua"
-    part_pattern = /^--=\s?([a-zA-Z\-_]+)\s?$/
-    doc_pattern = /^--==\s?([a-zA-Z]+)\s?:\s?(.*)\s?$/
+    part_pattern = /^--=\s?([a-zA-Z0-9\-_]+)\s?$/
+    doc_pattern = /^--==\s?([a-zA-Z0-9]+)\s?:\s?(.*)\s?$/
   elsif path =~ /\.c$/ then
     lang = "C"
     langprefix = "c"
-    part_pattern = /^\/\/=\s?([a-zA-Z\-_]+)\s?$/
-    doc_pattern = /^\/\/==\s?([a-zA-Z]+)\s?:\s?(.*)\s?$/    
+    part_pattern = /^\/\/=\s?([a-zA-Z0-9\-_]+)\s?$/
+    doc_pattern = /^\/\/==\s?([a-zA-Z0-9]+)\s?:\s?(.*)\s?$/    
   end
 
   part_name = nil
