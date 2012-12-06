@@ -1,12 +1,12 @@
-doct = document + test
+doct : Test as a Document.
 ====
 <a href="http://travis-ci.org/kengonakajima/doct"><img src="https://secure.travis-ci.org/kengonakajima/doct.png"></a>
 
-Tested code snippets as a document.
-
-
-How to convert
+How to test
 ====
-type "make" in the top directory of this repo, then ./db.json will be created.
+Just type
+    make test
+
+Then the script will perform all test and generate JSON file that contains full information of the document.
 
 
