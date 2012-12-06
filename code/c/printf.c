@@ -29,15 +29,18 @@ void printf_sprintf_snprintf() {
 //== ja: 標準入出力を用いたファイルの書き込みと読み込み
 #include <stdio.h>
 void std_file_io() {
+    // Write 
     FILE *fp = fopen( "/tmp/hoge", "w" );
     fprintf( fp, "hello " );
     char data[5] = {'w','o','r','l','d' };
     fwrite( data, sizeof(char), 5, fp );
     fclose(fp);
+    // Read
     fp = fopen( "/tmp/hoge", "r" );
     char readbuf[50];
     size_t readlen;
     readlen = fread( readbuf, sizeof(char), sizeof(readbuf), fp );
+    // Check
     assert( readlen == 11 );
     readbuf[readlen] = '\0';
     assert( strcmp( readbuf, "hello world" ) == 0 );
