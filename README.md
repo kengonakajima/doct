@@ -1,7 +1,10 @@
-doct
+doct = document + test
 ====
+<a href="http://travis-ci.org/kengonakajima/doct"><img src="https://secure.travis-ci.org/kengonakajima/doct.png"></a>
 
-Programmer's Programming Reference generator
+Tested code snippets as a document.
+
+
 
 
 
