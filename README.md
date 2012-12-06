@@ -4,7 +4,8 @@ doct : Test as a Document.
 
 How to test
 ====
-Just type
+On top directory, just type
+
     make test
 
 Then the script will perform all test and generate JSON file that contains full information of the document.
