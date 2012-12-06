@@ -23,6 +23,11 @@ def processFile(path)
     langprefix = "lua"
     part_pattern = /^--=\s?([a-zA-Z\-_]+)\s?$/
     doc_pattern = /^--==\s?([a-zA-Z]+)\s?:\s?(.*)\s?$/
+  elsif path =~ /\.c$/ then
+    lang = "C"
+    langprefix = "c"
+    part_pattern = /^\/\/=\s?([a-zA-Z\-_]+)\s?$/
+    doc_pattern = /^\/\/==\s?([a-zA-Z]+)\s?:\s?(.*)\s?$/    
   end
 
   part_name = nil
@@ -61,8 +66,6 @@ def processFile(path)
       end
     end
   end
-  
-  
 end
 
 def updateRelated() 
@@ -97,7 +100,7 @@ if !outpath then
 end
 
 start_at = Time.now
-files = `ls code/ruby/*.rb code/js/*.js code/lua/*.lua`.split("\n")
+files = `ls code/ruby/*.rb code/js/*.js code/lua/*.lua code/c/*.c`.split("\n")
 
 files.each do |path|
   path.strip!

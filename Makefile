@@ -7,8 +7,8 @@ version:
 	ruby --version
 	node --version
 	lua -v
-
-test: rubytest jstest luatest
+	gcc -v
+test: rubytest jstest luatest ctest
 
 rubytest:
 	make -C code/ruby
@@ -19,4 +19,5 @@ jstest:
 luatest:
 	make -C code/lua
 
-
+ctest:
+	make -C code/c
