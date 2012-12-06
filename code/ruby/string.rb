@@ -59,7 +59,7 @@ a.downcase!
 assert( a == "hello" )
 
 #= string-utf8-split-multibyte
-#= ja: マルチバイト文字を文字単位に分割する
+#== ja: マルチバイト文字を文字単位に分割する
 $KCODE='u'
 s = "よい天気"
 ary = s.split("")
