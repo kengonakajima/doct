@@ -46,6 +46,8 @@ void std_file_io() {
     assert( strcmp( readbuf, "hello world" ) == 0 );
 }
 
+// __STOP_DOCT_PARSE__
+
 int main() {
     printf_various();
     printf_sprintf_snprintf();

@@ -38,6 +38,7 @@ def processFile(path)
     #line.strip!
     line.gsub!( /\s+$/,"" )
     next if line.empty?
+    break if line.include?("__STOP_DOCT_PARSE__" )
     if line =~ part_pattern then
       part_name = langprefix + "-" + $1
       part_line = lineno
