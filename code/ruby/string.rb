@@ -47,8 +47,11 @@ assert( ary[0] == "ab" );
 assert( ary[1] == "cd" );
 assert( ary[2] == "ef" );
 
-
-
-
-
-
+#= string-cannot-append-fixnum
+#== ja: 整数を文字列にそのまま連結することはできない
+#== en: Fixnum can't be appended after a string
+begin
+  "abc" + 2
+rescue
+  assert( $!.class == TypeError )
+end

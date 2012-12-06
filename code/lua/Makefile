@@ -1,2 +1,2 @@
 all:
-	make -C ../..
+	lua array.lua

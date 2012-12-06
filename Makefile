@@ -11,13 +11,12 @@ version:
 test: rubytest jstest luatest
 
 rubytest:
-	ruby code/ruby/array.rb 
-	ruby code/ruby/hash.rb 
-	ruby code/ruby/string.rb
+	make -C code/ruby
 
 jstest:
-	node code/js/array.js
-	node code/js/string.js
+	make -C code/js
+
 luatest:
-	lua code/lua/array.lua
+	make -C code/lua
+
 

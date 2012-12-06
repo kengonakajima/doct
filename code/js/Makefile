@@ -1,2 +1,4 @@
 all:
-	make -C ../..
+	node array.js
+	node string.js
+
