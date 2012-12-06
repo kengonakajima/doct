@@ -126,7 +126,7 @@ rescue
   assert( $!.class == TypeError )
 end
 
-
+# __STOP_DOCT_PARSE__
 # memo:
 # 参考: http://ref.xaio.jp/ruby/classes/string/split
 # ruby-langのはまだ.
