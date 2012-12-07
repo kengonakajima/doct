@@ -1,13 +1,9 @@
-RUBY=ruby
 VERSION=$(shell ruby -e 'print RUBY_VERSION' )
-VERSIONFILE=./VERSION
-
 
 test: ver test_$(VERSION) test_common
 
 ver:
 	echo Ruby version is $(VERSION).
-	echo $(VERSION) >> $(VERSIONFILE)
 
 test_common:
 	ruby operators.rb
