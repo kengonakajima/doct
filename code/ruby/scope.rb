@@ -6,7 +6,7 @@ require "./util.rb"
 2.times {
   assert( defined?(v) == nil )
   v=1
-  assert( defined?(v) == "local-variable(in-block)" )
+  assert( defined?(v).include? "local-variable" )
 }
 
 #= scope-of-local-variables-even-if-not-executed
@@ -14,7 +14,7 @@ require "./util.rb"
 2.times {
   assert( defined?(v) == nil )
   v=1 if false
-  assert( defined?(v) == "local-variable(in-block)" )
+  assert( defined?(v).include? "local-variable" )
 }
 
 #= scope-of-instance-variables
