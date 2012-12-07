@@ -1,12 +1,12 @@
 # encoding: utf-8
 require "./util.rb"
 
-#= hash-init-lit
+#= hash-literal-init
 x = { 1=>2, 2=>4, 3=>6 }
 assert( x[1] == 2 ) 
 assert( x[2] == 4 )
 
-#= hash-to-json
+#= hash-convert-to-json
 require "rubygems"
 require "json"
 x = { 1=>2, "hello"=>"world" }

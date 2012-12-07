@@ -5,7 +5,7 @@ require("./util.rb")
 assert( "abcd" == "abcd" )
 assert( "abcd" === "abcd" )
 
-#= string-compare-single-and-double-quotes
+#= string-literal-compare-single-and-double-quotes
 #= ja: シングルクォート内部ではエスケープシーケンスがほぼ無効になる
 assert( "a\\na" == 'a\na' )
 
@@ -94,7 +94,7 @@ assert( ( "あ" <=> "い" ) == -1 )
 #= string-append-lit
 assert( ( "ab" "cd" ) == "abcd" )
 
-#= string-template
+#= string-literal-template
 x = 123
 assert( "hello#{x}" == "hello123" )
 

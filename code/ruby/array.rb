@@ -1,7 +1,7 @@
 # encoding: utf-8
 require "./util.rb"
 
-#= array-init-lit
+#= array-literal
 #== ja: 引数を要素として持つ配列を生成する
 #== en: create an array with specified arguments
 a = Array[1,2,"a",'b'] 
@@ -10,13 +10,13 @@ a = Array[1,2,"a",'b']
 b = [1,2,"a",'b'] 
 assert( a == b )
 
-#= array-out-ind
+#= array-index-out-of-range
 #== ja: 大きすぎるインデクスを指定して配列の要素を得る
 a = [1,2,"a",'b'] 
 assert( a[4] == nil )  
 assert( a[8] == nil )  
 
-#= array-neg-ind
+#= array-index-negative
 #== ja: 負のインデクスを指定して配列の要素を得る
 #== en: get a value from an array at negative index
 a = [1,2,"a",'b'] 
@@ -35,7 +35,7 @@ a = [1,2,"a",'b']
 c = a[2..10]
 assert( c.size == 2 ) 
 
-#= array-plus-array
+#= array-append-array
 #== ja: 配列を配列に連結する
 assert( [1,2,3,4] == [1,2] + [3,4] )
 a = [1,2]
