@@ -8,7 +8,7 @@ verprint: verprint.c
 	gcc verprint.c -o verprint
 
 ver: verprint
-	./verprint > $(VERSIONFILE)
+	./verprint >> $(VERSIONFILE)
 	echo $(CC) version is `cat $(VERSIONFILE)`.
 
 test:

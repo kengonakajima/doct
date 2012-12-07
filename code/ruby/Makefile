@@ -7,8 +7,7 @@ test: ver test_$(VERSION) test_common
 
 ver:
 	echo Ruby version is $(VERSION).
-	rm -f $(VERSIONFILE)
-	echo $(VERSION) > $(VERSIONFILE)
+	echo $(VERSION) >> $(VERSIONFILE)
 
 test_common:
 	ruby operators.rb

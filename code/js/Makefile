@@ -5,7 +5,7 @@ all: ver test
 
 ver:
 	echo Node version is $(VERSION).
-	echo $(VERSION) > $(VERSIONFILE)
+	echo $(VERSION) >> $(VERSIONFILE)
 
 test:
 	node array.js
