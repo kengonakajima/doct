@@ -1,1 +1,4 @@
 test_*
+VERSION
+version.c
+version

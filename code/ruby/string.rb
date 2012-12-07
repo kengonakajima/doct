@@ -58,15 +58,6 @@ assert( a == "Hello" )
 a.downcase!
 assert( a == "hello" )
 
-#= string-utf8-split-multibyte
-#== ja: マルチバイト文字を文字単位に分割する
-$KCODE='u'
-s = "よい天気"
-ary = s.split("")
-assert( ary[0] == "よ" )
-assert( ary[1] == "い" )
-assert( ary[2] == "天" )
-assert( ary[3] == "気" )
 
 #= string-not-equal
 assert( "abcd" != "abce" )
