@@ -2,6 +2,7 @@
 require "./util.rb"
 
 #= hash-literal-init-with-colon
+#== version: 1.9.3
 #== ja: ハッシュをコロン記号を使って初期化する
 h = { a:1, b:2, c:"hi" }
 assert( h[:a] == 1 )

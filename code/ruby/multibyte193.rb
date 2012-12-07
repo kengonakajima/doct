@@ -2,6 +2,7 @@
 require("./util.rb")
 
 #= string-utf8-split-multibyte-with-encoding
+#== version: 1.9.3
 #== ja: ソース冒頭にencodingを指定してマルチバイト文字を文字単位に分割する
 
 # encoding: utf-8

@@ -1,6 +1,7 @@
 require "./util.rb"
 
 #= hash-literal-init-with-even-sized-array
+#== version: 1.8.7
 #== ja: ハッシュを偶数要素の配列を使って初期化する(奇数だとコンパイルエラー)
 h = { "a",1, "b",2, "c","hi" }
 assert( h["a"] == 1 )
