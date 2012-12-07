@@ -3,7 +3,7 @@ require "./util.rb"
 #= range-for
 a = []
 for i in 1..3 do a.push(i) end
-assert( a.join(",") == "1,2,3" )
+assert( a == [1,2,3] )
 
 #= range-member-integer
 r = 1..10
@@ -33,11 +33,11 @@ assert( ! r.eql?(t) )
 a = []
 r = 1..5
 r.step do |i| a.push(i) end
-assert( a.join(",") == "1,2,3,4,5" )
+assert( a == [1,2,3,4,5] )
 
 a = []
 r.step(2) do |i| a.push(i) end
-assert( a.join(",") == "1,3,5")
+assert( a == [1,3,5] )
 
 
 #= range-conditional
@@ -47,7 +47,7 @@ a = []
     a.push(n)
   end
 end
-assert( a.join(",") == "2,3,4" )
+assert( a == [2,3,4] )
 
 
 

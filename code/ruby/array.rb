@@ -41,7 +41,7 @@ assert( [1,2,3,4] == [1,2] + [3,4] )
 a = [1,2]
 b = [3,4]
 c = a + b
-assert( a.join(",") == "1,2" )
+assert( a == [1,2] )
 
 
 #= array-equal

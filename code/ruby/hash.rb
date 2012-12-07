@@ -18,11 +18,11 @@ assert( y.to_json() == "{\"a\":{\"b\":{\"c\":1}}}" )
 
 #= hash-keys
 e = { 1=>2, 2=>4, 3=>6 }
-assert( e.keys.join(":") == "1:2:3" )
+assert( e.keys == [1,2,3] )
 
 #= hash-values
 e = { 1=>2, 2=>4, 3=>6 }
-assert( e.values.join(":") == "2:4:6" )
+assert( e.values == [2,4,6] )
 
 
 #= hash-length
