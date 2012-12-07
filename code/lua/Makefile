@@ -1,5 +1,7 @@
-VERSION=$(shell lua -e 'print(_VERSION)')
+VERSION=$(shell lua -e "s=_VERSION;t=s:gsub('Lua ','');print(t)" )
 VERSIONFILE=./VERSION
+
+
 
 all: ver test
 
