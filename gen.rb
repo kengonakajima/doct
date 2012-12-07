@@ -3,11 +3,18 @@
 require "rubygems"
 require "json"
 
+def getVersion(path)
+  d = File.dirname(path)
+  fn = d + "/VERSION"
+  return File.open(fn,"r").read.strip
+end
+
 def processFile(path)
   lang = nil
   langprefix = nil
   part_pattern = nil
   doc_pattern = nil
+  version = getVersion(path)
   if path =~ /\.rb$/ then
     lang = "Ruby"
     langprefix = "ruby"
@@ -46,6 +53,7 @@ def processFile(path)
       if !part then
         $db[part_name] = {}
         $db[part_name]["lang"] = lang
+        $db[part_name]["version"] = version
         $db[part_name]["file"] = path
         $db[part_name]["line"] = part_line
         $db[part_name]["doc"] = {}
