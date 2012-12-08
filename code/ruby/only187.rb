@@ -24,7 +24,6 @@ assert( ary[1] == "い" )
 assert( ary[2] == "天" )
 assert( ary[3] == "気" )
 
-#= array-convert-to-string-1.8.7
+#= array-convert-to-string-187
 a = [3,5,1]
-p a.to_s
 assert( a.to_s == "351" )

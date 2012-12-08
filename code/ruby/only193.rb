@@ -23,13 +23,60 @@ assert( h[:c] == "hi" )
 assert( h["a"] == nil )
 
 
-#= array-convert-to-string-1.9.3
+#= array-convert-to-string-193
+#== version: 1.9.3
 a = [3,5,1]
-p a.to_s
 assert( a.to_s == "[3, 5, 1]" )
 
 
 #= array-keep-conditional
+#== version: 1.9.3
 a = [3,2,5,4]
-p a.keep_if do |x| (x%2) == 0 end 
 assert( a.keep_if do |x| (x%2) == 0 end == [2,4] )
+
+#= array-repeated-combination
+#== version: 1.9.3
+a = [1, 2, 3]
+assert( a.repeated_combination(1).to_a  == [[1], [2], [3]] )
+assert( a.repeated_combination(2).to_a  == [[1,1],[1,2],[1,3],[2,2],[2,3],[3,3]] )
+assert( a.repeated_combination(3).to_a  == [[1,1,1],[1,1,2],[1,1,3],[1,2,2],[1,2,3],[1,3,3],[2,2,2],[2,2,3],[2,3,3],[3,3,3]] )
+assert( a.repeated_combination(0).to_a  == [[]] ) # one combination of length 0
+
+#= array-repeated-permutation
+#== version: 1.9.3
+a = [1, 2]
+assert( a.repeated_permutation(1).to_a  == [[1], [2]] )
+assert( a.repeated_permutation(2).to_a  == [[1,1],[1,2],[2,1],[2,2]] )
+assert( a.repeated_permutation(3).to_a  == [[1,1,1],[1,1,2],[1,2,1],[1,2,2],[2,1,1],[2,1,2],[2,2,1],[2,2,2]] )
+assert( a.repeated_permutation(0).to_a  == [[]] ) # one permutation of length 0
+
+#= array-rotate
+#== version: 1.9.3
+#== ja: 配列を左向きに回転させる
+a = [5,1,2]
+assert( a.rotate == [1,2,5] )
+assert( a == [5,1,2] )
+assert( a.rotate! == [1,2,5] )
+assert( a == [1,2,5] )
+
+#= array-sample-randomly
+#== version: 1.9.3
+a = [3,1,4]
+n = a.sample
+assert( n == 3 || n == 1 || n == 4 )
+ary = a.sample(2)
+matched = false
+a.repeated_permutation(2).each do |pattern|
+  matched |= (pattern == ary)
+end
+assert(matched)
+
+
+#= array-select-destructive-193
+#== version: 1.9.3
+a = %w{ a b c d e f }
+assert( a.select {|v| v =~ /[aeiou]/}   == ["a", "e"] )
+assert( a == %w{ a b c d e f } )
+assert( a.select! {|v| v =~ /[aeiou]/}   == ["a", "e"] )
+assert( a == ["a","e"] )
+

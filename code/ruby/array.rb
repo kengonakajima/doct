@@ -106,6 +106,14 @@ b = [2,3,4]
 c = a & b
 assert( c == [2,3] )
 
+#= array-logical-or
+#== ja: 配列の論理和
+a = [1,2,3]
+b = [2,3,4]
+c = a | b
+assert( c == [1,2,3,4] )
+
+
 #= array-range-set
 #== en: get subarray with a range
 x = [0,1,2,3]
@@ -159,6 +167,7 @@ assert( a[5..10] == [] )
 a=[1,2,3]
 begin
   a.clear!
+  assert(false)
 rescue
   assert($!.class == NoMethodError )
 end
@@ -253,6 +262,9 @@ assert( a.delete_at(99) == nil )
 a = [3,5,6,1]
 a.delete_if do |x| (x%2) == 0 end
 assert( a == [ 3,5,1] )
+a = [3,5,6,1]
+a.reject! do |x| (x%2) == 0 end
+assert( a == [ 3,5,1] )
 
 #= array-remove-head
 #== ja: 配列の要素を先頭から数を指定して削除し、残りまたは削除した部分を返す
@@ -281,6 +293,16 @@ total = 0
 a.each_index do |i| total += a[i] end
 assert( total == 3+3+5+5 )
 assert( b == [3,3,5,5] )
+
+#= array-scan-reverse
+#== ja: 配列の要素を逆順に走査する
+a = ["a","b","c"]
+s = ""
+a.reverse_each do |x| s += x end
+assert( s == "cba")
+
+#= array-search
+
 
 
 #= array-check-empty
@@ -311,6 +333,11 @@ assert( a.index{|x|x=="b"} == 1 )
 a = [3,5,1,4]
 assert( a.first == 3 )
 assert( a.first(2) == [3,5] )
+assert( a.first(2) == a.take(2) ) # not destructive
+assert( a == [3,5,1,4] )
+b = a.take_while do |x| x > 2 end
+assert( b == [3,5] )
+assert( a == [3,5,1,4] )
 
 #= array-flatten
 a = [3,5,[1,4]]
@@ -338,8 +365,171 @@ a = [3,5,1]
 a.insert(2,99) # destructive
 assert( a == [3,5,99,1] )
 
+#= array-last
+a = [ "w", "x", "y", "z" ]
+assert( a.last == "z" )
+assert( a.last(2)  == ["y", "z"] )
+
+#= array-length-and-size
+a = [4,1,5]
+assert( a.length == 3 )
+assert( a.length == a.size )
+
+#= array-pack-simplest
+a = [ "a", "b", "c" ]
+n = [ 65, 66, 67 ]
+assert( a.pack("A3A3A3") == "a  b  c  " )
+assert( a.pack("a3a3a3") == "a\000\000b\000\000c\000\000" )
+assert( n.pack("ccc") == "ABC" )
+
+#= array-permutation
+a = [1, 2, 3]
+e = a.permutation
+assert( e.class.to_s.include?("Enumerator") )
+assert( e.to_a == [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] )
+assert( a.permutation(1).to_a  == [[1],[2],[3]] )
+assert( a.permutation(2).to_a  == [[1,2],[1,3],[2,1],[2,3],[3,1],[3,2]] )
+assert( a.permutation(3).to_a  == [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] )
+assert( a.permutation(0).to_a  == [[]] ) # one permutation of length 0
+assert( a.permutation(4).to_a  == [] )  # no permutations of length 4
+
+#= array-pop
+
+a = [3,6,1,7]
+assert( a.pop == 7 ) # destructive
+assert( a == [3,6,1] )
+assert( a.pop(2) == [6,1] )
+assert( a == [3] )
+
+
+#= array-product
+#== ja: 2つの配列の組み合わせをすべて生成する
+assert( [1,2,3].product([4,5]) == [[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]] )
+assert( [1,2].product([1,2]) == [[1,1],[1,2],[2,1],[2,2]] )
+assert( [1,2].product([3,4],[5,6]) == [[1,3,5],[1,3,6],[1,4,5],[1,4,6],[2,3,5],[2,3,6],[2,4,5],[2,4,6]] )
+assert( [1,2].product() == [[1],[2]] )
+assert( [1,2].product([]) == [] )
+
+#= array-push
+a = [3,6,1]
+a.push(9) 
+assert( a == [3,6,1,9] )
+
+
+
+#= array-reverse
+a = [6,1,3]
+assert( a.reverse == [3,1,6] )
+assert( a == [6,1,3] )
+a.reverse!
+assert( a == [3,1,6] )
+
+#= array-search-reverse
+#== ja: 配列の要素を逆順に検索して最初に見つけた要素のインデクスを返す
+a = [6,9,8,7,4]
+assert( a.rindex(7) == 3 )
+assert( a.rindex(11) == nil )
+assert( a.rindex do |x| (x%2)==0 end == 4 )
+
+#= array-select
+a = %w{ a b c d e f }
+assert( a.select {|v| v =~ /[aeiou]/}   == ["a", "e"] )
+assert( a == %w{ a b c d e f } )
+
+
+
+#= array-shift
+args = [ "-m", "-q", "filename" ]
+assert( args.shift == "-m" )           # destructive
+assert( args == [ "-q", "filename"] ) 
+
+args = [ "-m", "-q", "filename" ]
+assert( args.shift(2)  == ["-m", "-q"] ) # destructive
+assert( args == ["filename"] )
+
+a = [1,2,3]
+assert( a.shift(4) == [1,2,3] )
+assert( a == [] )
+
+a = []
+assert( a.shift == nil )
+assert( a == [ ] )
+
+
+#= array-shuffle
+a = [1,2,3]
+a.shuffle!
+v0 = a.shift
+v1 = a.shift
+v2 = a.shift
+v3 = a.shift
+assert( v0 == 1 || v0 == 2 || v0 == 3 )
+assert( v1 == 1 || v1 == 2 || v1 == 3 )
+assert( v2 == 1 || v2 == 2 || v2 == 3 )
+assert( v3 == nil )
+
+#= array-sort
+#== ja: 配列の要素を辞書順にソートする。真偽を返すブロックも使える。
+a = [ "d", "a", "e", "c", "b" ]
+assert( a.sort! == ["a", "b", "c", "d", "e"] )  # destructive by !
+assert( a.sort! {|x,y| y <=> x }   == ["e", "d", "c", "b", "a"] )
+
+a = [ "a", "b", 3, 2 ]
+begin
+  a.sort
+  assert(false)
+rescue
+  assert( $!.class == ArgumentError )
+end
+
+
+#= array-sort-by
+#== ja: 配列の要素をブロックが返す値を利用してソートする。
+animals = ["mouse", "cat", "hippopotamus", "giraffe"]
+sorted = animals.sort_by {|anim| anim.size }
+assert( sorted == ["cat", "mouse", "giraffe", "hippopotamus"] )
+
+
+#= array-transpose
+#== ja: 2次元配列を転置する(列と行を入れ替える)
+a = [[1,2], [3,4], [5,6]]
+assert( a.transpose   == [[1, 3, 5], [2, 4, 6]] )  # not destructive
+assert( a == [[1,2], [3,4], [5,6]] )
+
+#= array-unique
+a = [3,3,5,8,2,5,3]
+b = a.uniq! # destructive
+assert( a == [3,5,8,2] )
+
+#= array-unshift
+a = [1,2,3]
+a.unshift(8)  # destructive
+assert( a == [8,1,2,3] )
+
+#= array-select-values-at-indexes
+a = ["cat","dog","fox","mole","frog"]
+b = a.values_at(1,2,4)
+assert( b == ["dog","fox","frog"] )
+
+#= array-zip
+a = [1,2,3]
+b = ["a","b","c"]
+c = [7,8,9]
+d = a.zip(b,c)  # not destructive
+assert( d == [[1, "a", 7], [2, "b", 8], [3, "c", 9]] )
+assert( a == [1,2,3] )
+
+a = [1,2]
+b = ["a","b","c","d","e","f","g"]
+c = [7,8,9,10,11]
+d = a.zip(b,c)  # not destructive
+assert( d == [[1, "a", 7], [2, "b", 8]] )
+
+
+
 
 
 # __STOP_DOCT_PARSE__
+#
 # most idea is originally from: http://www.ruby-doc.org/core-1.9.3/Array.html
 # 
