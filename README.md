@@ -11,3 +11,6 @@ On top directory, just type
 Then the script will perform all test and generate JSON file that contains full information of the document.
 
 
+License
+====
+BSD
