@@ -15,10 +15,12 @@ a = Array.new(3,"x")
 assert( a == [ "x", "x", "x" ] )
 
 
-#= array-at
+#= array-get-value-with-index
 a=[1,2,3]
 assert( a.at(1) == 2 )
 assert( a[1] == 2 )
+assert( a.fetch(1) == 2 )
+assert( a.fetch(9,"X") == "X" ) # fetch returns default value
 
 #= array-create-copy
 #== ja: 配列を複製する
@@ -55,6 +57,9 @@ assert( a[8] == nil )
 #== en: get a value from an array at negative index
 a = [1,2,"a",'b'] 
 assert( a[-1] == "b" )  
+assert( a.at(-1) == "b" )
+assert( a.fetch(-1) == "b" )
+
 
 #= array-splice
 #== ja: 範囲を指定して配列の部分を取り出す
@@ -84,6 +89,7 @@ assert( d == [1,2,3,4] )
 #= array-compare-equal
 #== ja: 配列同士を比較する
 assert( [1,2,3] == [1,2,3] )
+assert( [1,2,3].eql?( [1,2,3] ) )
 assert( [1,2,3] != [1,3,2] )
 assert( [1,2,3] != [1,2,3,4] )
 assert( [1,2,3] != [1,2,4] )
@@ -247,6 +253,91 @@ assert( a.delete_at(99) == nil )
 a = [3,5,6,1]
 a.delete_if do |x| (x%2) == 0 end
 assert( a == [ 3,5,1] )
+
+#= array-remove-head
+#== ja: 配列の要素を先頭から数を指定して削除し、残りまたは削除した部分を返す
+a = [1,2,3,4]
+assert( a.drop(2) == [3,4] )
+assert( a == [1,2,3,4] )
+assert( a.shift(2) == [1,2] ) # shift is destructive
+assert( a == [3,4] ) 
+
+#= array-remove-head-conditional
+a = [2,3,5,6,3]
+b = a.drop_while do |x| (x < 4) end
+assert( b == [5,6,3] )
+assert( a == [2,3,5,6,3] )
+
+#= array-scan
+#== ja: 配列の要素を走査する
+
+a = [3,3,5,5]
+total = 0
+b = a.each do |x| total += x end  # returns orig array
+assert( total == 3+3+5+5 )
+assert( b == [3,3,5,5] )
+
+total = 0
+a.each_index do |i| total += a[i] end
+assert( total == 3+3+5+5 )
+assert( b == [3,3,5,5] )
+
+
+#= array-check-empty
+a = [1,2,3]
+assert( a.empty? == false )
+a.clear
+assert( a.empty? )
+
+#= array-fill
+a = [1,2,3,4]
+assert( a.fill(9) == [9,9,9,9] ) # destructive
+assert( a == [9,9,9,9] )
+
+a = [1,2,3,4]
+assert( a.fill(9,2,2) == [1,2,9,9] ) # destructive
+
+a = [1,2,3,4]
+assert( a.fill(9,0..1) == [9,9,3,4] ) # destructive
+
+#= array-search-element
+#== ja: 配列の要素を検索して最初にみつかったインデクスを返す
+a = [ "a", "b", "c" ]
+assert( a.index("b") == 1 )
+assert( a.index("z") == nil )
+assert( a.index{|x|x=="b"} == 1 ) 
+
+#= array-get-first-elements
+a = [3,5,1,4]
+assert( a.first == 3 )
+assert( a.first(2) == [3,5] )
+
+#= array-flatten
+a = [3,5,[1,4]]
+assert( a.flatten == [3,5,1,4] )
+assert( a == [3,5,[1,4]] ) # non-destructive
+assert( a.flatten! == [3,5,1,4] )
+assert( a == [3,5,1,4] ) # destructive
+a = [3,5,[1,[4,8]]]
+assert( a.flatten(1) == [3,5,1,[4,8]] )
+
+#= array-include
+a = [3,5,1,4]
+assert( a.include?(1) )
+assert( a.include?(7) == false )
+
+#= array-replace
+#== ja: 配列の内容全体を置きかえる
+a = [3,5,1,4]
+b = [9,8,7,6]
+assert( a.replace(b) == [9,8,7,6] )
+
+#= array-insert 
+#== ja: 位置を指定して配列の要素を挿入する
+a = [3,5,1]
+a.insert(2,99) # destructive
+assert( a == [3,5,99,1] )
+
 
 
 # __STOP_DOCT_PARSE__

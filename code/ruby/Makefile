@@ -20,10 +20,9 @@ test_common:
 
 
 test_1.8.7:
-	ruby hash187.rb
-	ruby multibyte187.rb
+	ruby only187.rb
 
 test_1.9.3:
-	ruby hash193.rb
-	ruby multibyte193.rb
+	ruby only193.rb
+
 
