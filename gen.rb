@@ -43,7 +43,7 @@ def processFile(path)
     lineno += 1
     #line.strip!
     line.gsub!( /\s+$/,"" )
-    next if line.empty?
+    next if line.empty? && part_name == false
     break if line.include?("__STOP_DOCT_PARSE__" )
     if line =~ part_pattern then
       part_name = langprefix + "-" + $1
