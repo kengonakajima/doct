@@ -80,3 +80,25 @@ assert( a == %w{ a b c d e f } )
 assert( a.select! {|v| v =~ /[aeiou]/}   == ["a", "e"] )
 assert( a == ["a","e"] )
 
+#= enumerable-each_with_object
+#== version: 1.9.3
+evens = (1..5).each_with_object([]) do |i,a|  a.push(i*2) end
+assert( evens == [2,4,6,8,10 ] )
+
+#= array-flat_map
+#== version: 1.9.3
+a = [[1,2],[3,4]]
+b = a.flat_map do |i| i*2 end
+c = a.collect_concat do |i| i*2 end
+assert( b == [1,2,1,2,3,4,3,4] )
+assert( c == [1,2,1,2,3,4,3,4] )
+
+#= array-slice_before
+#== version: 1.9.3
+#== ja: 配列を、指定した値の要素より前と、その要素を含む後ろに分割する
+out = [1,4,7,3,11,9,5].slice_before(3).to_a
+assert( out == [ [1,4,7], [3,11,9,5] ] )
+
+enumerator = [1,4,7,3,11,9,5].slice_before do |x| x == 3 end
+out = enumerator.to_a 
+assert( out == [ [1,4,7], [3,11,9,5] ] )

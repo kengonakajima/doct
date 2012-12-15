@@ -352,6 +352,8 @@ assert( a.flatten(1) == [3,5,1,[4,8]] )
 a = [3,5,1,4]
 assert( a.include?(1) )
 assert( a.include?(7) == false )
+assert( a.member?(1) )
+assert( a.member?(7) == false )
 
 #= array-replace
 #== ja: 配列の内容全体を置きかえる
@@ -431,11 +433,14 @@ assert( a.rindex(7) == 3 )
 assert( a.rindex(11) == nil )
 assert( a.rindex do |x| (x%2)==0 end == 4 )
 
-#= array-select
+#= array-find-all-elements
 a = %w{ a b c d e f }
-assert( a.select {|v| v =~ /[aeiou]/}   == ["a", "e"] )
-assert( a == %w{ a b c d e f } )
-
+b = a.select {|v| v =~ /[aeiou]/}   
+assert( b == ["a", "e"] )
+assert( a == %w{ a b c d e f } ) # not-destructive
+c = a.find_all {|v| v =~ /[aeiou]/}   
+assert( c == ["a", "e"] )
+assert( a == %w{ a b c d e f } ) # not-destructive
 
 
 #= array-shift
@@ -526,7 +531,131 @@ d = a.zip(b,c)  # not destructive
 assert( d == [[1, "a", 7], [2, "b", 8]] )
 
 
+#= array-find
+a = [1,4,9,11].find do |x| (x%2)==0 end
+assert( a == 4 )
+a = [1,4,9,11].detect do |x| (x%2)==0 end
+assert( a == 4 )
 
+#= array-each_cons
+# see also each_slice
+a=[]
+[1,4,9,11,13].each_cons(3) do |x| a.push(x) end
+assert( a == [ [1,4,9], [4,9,11], [9,11,13] ] )
+
+#= array-each_slice
+# see also each_cons
+a=[]
+[1,4,7,9,10,12,15].each_slice(3) do |x| a.push(x) end
+assert( a == [ [1,4,7], [9,10,12], [15] ] )
+
+#= array-each_with_index
+# from Enumerable
+a=[ "cat", "dog", "wombat" ]
+b=[]
+a.each_with_index do |item,index| b.push([item,index]) end
+assert( b == [ ["cat",0], ["dog",1], ["wombat",2] ] )
+
+#= array-find-index
+assert( (1..100).find_index(50) == 49 )
+
+#= array-reduce
+# aliased: inject
+# from Enumerable
+b = []
+out = [1,2,3,4,5].reduce do |sum,n| 
+  b.push( [sum,n] )
+  sum + n 
+end
+assert( out == 15 )
+assert( b == [ [1,2], [3,3], [6,4], [10,5] ] )
+
+out = [1,2,3,4,5].reduce(:+) # reduce(Symbol) 
+assert( out == 15 )
+
+b = []
+out = [1,2,3,4,5].reduce(100) do |sum,n|   # reduce(Initial_value)
+  b.push( [sum,n] )
+  sum + n
+end
+assert( out == 115 )
+assert( b == [ [100,1], [101,2], [103,3], [106,4], [110,5] ] )
+
+out = [1,2,3,4,5].reduce(100,:+)
+assert( out == 115 )
+
+out = [1,2,3,4,5].inject(100,:+)  # same as reduce()
+assert( out == 115 )
+
+
+#= array-max
+# from Enumerable
+assert( [1,5,8,3,2].max() == 8 )
+
+a = [ "albatross", "dog", "horse" ]
+assert( a.max == "horse" )     # dictionary wise
+assert( a.max {|a,b| a.length <=> b.length }  == "albatross" ) # length wise
+
+#= array-max_by
+# from Enumerable
+a = [ "albatross", "dog", "horse" ]
+out = a.max_by do |x| x.length end
+assert( out == "albatross" )
+
+#= array-min
+# from Enumerable
+assert( [1,5,8,3,2].min() == 1 )
+
+a = [ "albatross", "dog", "horse" ]
+assert( a.min == "albatross" )     # dictionary wise
+assert( a.min {|a,b| a.length <=> b.length }  == "dog" ) # length wise
+
+#= array-min_by
+# from Enumerable
+a = [ "albatross", "dog", "horse" ]
+out = a.min_by do |x| x.length end
+assert( out == "dog" )
+
+#= array-minmax
+# from Enumerable
+a = [ "albatross", "dog", "horse" ]
+assert( a.minmax == [ "albatross", "horse" ] ) # dictionary wise
+out = a.minmax do |a,b| a.length <=> b.length end
+assert( out == [ "dog", "albatross" ] ) # length wise
+
+#= array-minmax_by
+# from Enumerable
+a = [ "albatross", "dog", "horse" ]
+out = a.minmax_by do |x| x.length end
+assert( out == [ "dog", "albatross" ] )
+
+#= array-none
+#== ja: それぞれの要素を評価して一度でもtrueだったらfalse、すべてfalseだったらtrueを返す
+# from Enumerable
+out = ["ant", "bear","cat"].none? do |word| word.length == 5 end
+assert( out == true )
+
+out = ["ant","bear","cat"].none? do |word| word.length >= 4 end
+assert( out == false )
+
+assert( [].none? == true )
+assert( [nil].none? == true )
+assert( [nil,false].none? == true )
+
+#= array-one
+#== ja: 全要素を評価して一度だけ真だったらtrue, 0回か2回以上だったらfalse
+out = ["ant","bear","cat"].one? do |word| word.length == 4 end
+assert( out == true )
+out = ["ant","bear","cat"].one? do |word| word.length == 3 end
+assert( out == false ) 
+
+assert( [nil, true, 99 ].one? == false )
+assert( [nil, true, false ].one? == true )
+
+#= array-partition
+
+out = (1..6).partition do |v| v.even? end
+assert( out ==  [[2, 4, 6], [1, 3, 5]] )
 
 
 # __STOP_DOCT_PARSE__
