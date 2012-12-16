@@ -1,5 +1,5 @@
 # encoding: utf-8
-require("./util.rb")
+require "../../utils/doctutil.rb"
 
 #= string-utf8-split-multibyte-with-encoding
 #== version: 1.9.3
