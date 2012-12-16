@@ -22,6 +22,7 @@ void varg_wrap_sprintf() {
 
 
 //= variable-function-argument
+//== ja: 関数の可変長引数を使って数値をsumする
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -31,7 +32,7 @@ int sum( int arg_num, ...) {
     va_start( argptr, arg_num ); // set start address
     int i;
     for(i=0;i<arg_num;i++) {
-        int param = va_arg( argptr, int );
+        int param = va_arg( argptr, int ); // get parameter with type
         total += param;
     }
     va_end(argptr);
