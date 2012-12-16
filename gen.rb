@@ -105,7 +105,7 @@ end
 
 
 def processResult(path)
-  path =~ /code\/([a-zA-Z]+)\/results\/([a-zA-Z]+)\/.*$/
+  path =~ /code\/([a-zA-Z]+)\/results\/([0-9\.a-zA-Z]+)\/.*$/
   langprefix = $1
   envname = $2
   bn = File.basename(path, ".out")
@@ -116,6 +116,10 @@ def processResult(path)
 
   STDERR.print "Result for #{name} : #{content.size} bytes\n"
 
+  if !doc then
+    STDERR.print "DOCNAME #{name} is not found!\n"
+    p $db.keys
+  end
   doc["results"] = {}
   doc["results"][envname] = content
 end

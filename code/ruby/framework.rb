@@ -8,7 +8,9 @@ srcpath = ARGV[0]
 
 STDERR.print "execute #{srcpath}...\n"
 
-out = `/usr/bin/time -p ruby #{srcpath} 2>&1`
+retcode = system( "/usr/bin/time -p ruby #{srcpath} 2>&1 > /tmp/ruby_out" )
+
+raise "execution error in '#{srcpath}' " if !retcode 
 
 OUTDIR = "results"
 
@@ -41,7 +43,8 @@ f.printf "= source: #{srcpath}\n"
 f.printf "= system: #{uname}\n"
 f.printf "= cpuinfo: #{cpuinfo}\n"
 f.printf "= os_version: #{osver}\n"
-f.write out
+f.write `cat /tmp/ruby_out`
 f.close
 
 
+system( "rm -f /tmp/ruby_out")

@@ -20,7 +20,7 @@ test_common:
 	ruby string.rb
 
 bench_common:
-	ruby framework.rb simple_loop.rb
+	ruby framework.rb simple-loop.rb
 
 test_1.8.7:
 	ruby only187.rb
