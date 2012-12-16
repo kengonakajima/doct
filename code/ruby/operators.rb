@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= operator-and
 assert( 1==1 && 2==2 )

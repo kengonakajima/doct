@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= array-create-with-new
 #== ja: 長さや内容を指定して配列を初期化する

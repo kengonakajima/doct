@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= constant-search-order
 #== ja: 定数の探索順

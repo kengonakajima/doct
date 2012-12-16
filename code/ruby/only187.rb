@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= hash-literal-init-with-even-sized-array
 #== version: 1.8.7

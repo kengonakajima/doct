@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= hash-literal-init
 x = { 1=>2, 2=>4, 3=>6 }

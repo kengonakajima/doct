@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= scope-of-local-variables
 #== ja: ローカル変数は定義した位置より後ろでのみdefined

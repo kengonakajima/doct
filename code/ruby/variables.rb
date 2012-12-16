@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= file-and-line-variable
 #== ja: ファイル名と行番号を得る擬似変数

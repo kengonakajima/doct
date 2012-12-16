@@ -1,6 +1,6 @@
 VERSION=$(shell ruby -e 'print RUBY_VERSION' )
 
-test: ver test_$(VERSION) test_common
+test: ver test_$(VERSION) test_common bench_common
 
 ver:
 	echo Ruby version is $(VERSION).
@@ -19,6 +19,8 @@ test_common:
 	ruby hash.rb 
 	ruby string.rb
 
+bench_common:
+	ruby framework.rb simple_loop.rb
 
 test_1.8.7:
 	ruby only187.rb

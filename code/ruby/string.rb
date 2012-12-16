@@ -1,5 +1,5 @@
 # encoding: utf-8
-require("./util.rb")
+require "../../utils/doctutil.rb"
 
 #= string-equal
 assert( "abcd" == "abcd" )

@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= literal-integer-decimal
 #== ja: 10進数整数リテラル

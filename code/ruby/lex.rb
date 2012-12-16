@@ -1,4 +1,4 @@
-require "./util.rb"
+require "../../utils/doctutil.rb"
 
 #= embedded-document
 #== ja: 埋め込みドキュメント
