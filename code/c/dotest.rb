@@ -1,4 +1,4 @@
-#
+require "../../utils/doctutil.rb"
 
 OUTDIR = "results"
 
@@ -24,28 +24,6 @@ def clean(src)
   system( "rm -f #{outpath}")
 end
 
-def getLinuxCPUModel()                                                                                                
-  a = `cat /proc/cpuinfo`                                                                                             
-  a.split("\n").each do |line|                                                                                        
-    line.strip!                                                                                                       
-    if line =~ /model name/ then                                                                                      
-      tag,value = line.split(":")                                                                                     
-      return value                                                                                                    
-    end                                                                                                               
-  end                                                                                                                 
-end                                                                                                                   
-
-def getOSXVersion() 
-  `sw_vers`.split("\n").each do |line|
-    line.strip!
-    if line =~ /ProductVersion:\s+([0-9]+\.[0-9]+\.[0-9]+)/ then
-      return $1
-    end
-  end              
-  return "unknown"
-end
-
-
 def compile_exec(src, option )
   STDERR.print "compile and execute #{src} option:'#{option}':\n"
 
@@ -60,31 +38,22 @@ def compile_exec(src, option )
   raise "compile error : '#{path}'\n#{out}\n"  if !o
 
   # get system info..
-  un = `uname`.strip
-  cpuinfo = "unknown"
-  osver = "unknown"
-  if un == "Darwin" then
-    cpuinfo = `sysctl -n machdep.cpu.brand_string`.strip!
-    osver = getOSXVersion()
-  elsif un == "Linux" then
-    cpuinfo = getLinuxCPUModel()
-    osver = `cat /etc/issue`.strip!
-  end
+  uname, cpuinfo, osver = getSystemInfo()
 
   # prepare output directory
   begin
-    Dir.mkdir( "#{OUTDIR}/#{un}" )
+    Dir.mkdir( "#{OUTDIR}/#{uname}" )
   rescue
   end
 
   # execute            
-  outpath = getOutPath(un,src)
+  outpath = getOutPath(uname,src)
   f=File.open(outpath,"a+")
   f.printf( "== doct test starts here\n" )
   f.printf( "= source: #{src}\n" )
   f.printf( "= compiler: #{compiler}\n")
   f.printf( "= option: #{option}\n" )
-  f.printf( "= system: #{un}\n" )
+  f.printf( "= system: #{uname}\n" )
   f.printf( "= cpuinfo: #{cpuinfo}\n" )
   f.printf( "= os_vesion: #{osver}\n" )
   f.close
