@@ -638,9 +638,9 @@ assert( out == true )
 out = ["ant","bear","cat"].none? do |word| word.length >= 4 end
 assert( out == false )
 
-assert( [].none? == true )
-assert( [nil].none? == true )
-assert( [nil,false].none? == true )
+assert( [].none? == true )      # en: empty array gives true because starting state is true   ja: 初期状態がtrueから始まるので、配列に要素がない場合はtrueが返される
+assert( [nil].none? == true )   # en: nil is evaluated as false 
+assert( [nil,false].none? == true ) 
 
 #= array-one
 #== ja: 全要素を評価して一度だけ真だったらtrue, 0回か2回以上だったらfalse
@@ -650,7 +650,7 @@ out = ["ant","bear","cat"].one? do |word| word.length == 3 end
 assert( out == false ) 
 
 assert( [nil, true, 99 ].one? == false )
-assert( [nil, true, false ].one? == true )
+assert( [nil, true, false ].one? == true ) # ja: nilはfalseと評価される
 
 #= array-partition
 

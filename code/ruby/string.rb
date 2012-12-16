@@ -6,16 +6,16 @@ assert( "abcd" == "abcd" )
 assert( "abcd" === "abcd" )
 
 #= string-literal-compare-single-and-double-quotes
-#= ja: シングルクォート内部ではエスケープシーケンスがほぼ無効になる
+#== ja: シングルクォート内部ではエスケープシーケンスがほぼ無効になる
 assert( "a\\na" == 'a\na' )
 
 #= string-compare-percent-q-strings
-#= ja: %q文字列内部ではエスケープシーケンスがほぼ無効になる
+#== ja: %q文字列内部ではエスケープシーケンスがほぼ無効になる
 assert( %Q(st\\nring) == %q(st\nring) )
 
 
 #= string-here-document-various
-#= ja: ヒアドキュメントいろいろ
+#== ja: ヒアドキュメントいろいろ
 a = <<End
 hello
 End
