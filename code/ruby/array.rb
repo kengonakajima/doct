@@ -650,7 +650,7 @@ out = ["ant","bear","cat"].one? do |word| word.length == 3 end
 assert( out == false ) 
 
 assert( [nil, true, 99 ].one? == false )
-assert( [nil, true, false ].one? == true ) # ja: nilはfalseと評価される
+assert( [nil, true, false ].one? == true ) # ja: nilはfalseと評価される | en: nil is evaluated as false
 
 #= array-partition
 
