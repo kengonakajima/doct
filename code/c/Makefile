@@ -1,5 +1,6 @@
 VERSION=$(shell ./verprint)
 CC=gcc
+TIME=/usr/bin/time
 
 all: ver test
 
@@ -15,3 +16,6 @@ test:
 	./test_stdio
 	$(CC) varg.c -o test_varg
 	./test_varg
+	ruby dotest.rb bench-simple-loop.c
+
+
