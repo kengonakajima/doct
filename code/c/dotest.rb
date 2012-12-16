@@ -60,7 +60,7 @@ def compile_exec(src, option )
   o = system( "/usr/bin/time -p ./doct_executable >> #{outpath} 2>&1")
   out = `cat #{outpath}`
 
-  raise "execution error: '#{path}'\n#{out}\n" if !o
+  raise "execution error: '#{src}'\n#{out}\n" if !o
 
   # clean
   system( "rm -f doct_executable /tmp/gcc_out doct_body" )
