@@ -1,5 +1,7 @@
 #
 
+OUTDIR = "results"
+
 if ARGV.size != 1 then 
   STDERR.print "Usage: ruby dotest.rb C_SOURCE_FILE\n"
   exit 0
@@ -11,13 +13,14 @@ if ! File.exists?(path) then
   STDERR.print "file not exist:#{path}\n"
 end
 
-def getOutPath(src)
+def getOutPath(envname,src)
   bn = File.basename( src, ".c")
-  return "test_out/#{bn}.out"
+  return "#{OUTDIR}/#{envname}/#{bn}.out"
 end
 
 def clean(src)
-  outpath = getOutPath(src)
+  envname = `uname`.strip
+  outpath = getOutPath(envname,src)
   system( "rm -f #{outpath}")
 end
 
@@ -56,17 +59,10 @@ def compile_exec(src, option )
   out = `cat /tmp/gcc_out`
   raise "compile error : '#{path}'\n#{out}\n"  if !o
 
-  # execute
-  outpath = getOutPath(src)
-  f=File.open(outpath,"a+")
-  f.printf( "== doct test starts here\n" )
-  f.printf( "= source: #{src}\n" )
-  f.printf( "= compiler: #{compiler}\n")
-  f.printf( "= option: #{option}\n" )
+  # get system info..
   un = `uname`.strip
   cpuinfo = "unknown"
   osver = "unknown"
-  f.printf( "= system: #{un}\n" )
   if un == "Darwin" then
     cpuinfo = `sysctl -n machdep.cpu.brand_string`.strip!
     osver = getOSXVersion()
@@ -74,12 +70,27 @@ def compile_exec(src, option )
     cpuinfo = getLinuxCPUModel()
     osver = `cat /etc/issue`.strip!
   end
+
+  # prepare output directory
+  begin
+    Dir.mkdir( "#{OUTDIR}/#{un}" )
+  rescue
+    STDERR.print "#{OUTDIR} exists.\n"
+  end
+
+  # execute            
+  outpath = getOutPath(un,src)
+  f=File.open(outpath,"a+")
+  f.printf( "== doct test starts here\n" )
+  f.printf( "= source: #{src}\n" )
+  f.printf( "= compiler: #{compiler}\n")
+  f.printf( "= option: #{option}\n" )
+  f.printf( "= system: #{un}\n" )
   f.printf( "= cpuinfo: #{cpuinfo}\n" )
   f.printf( "= os_vesion: #{osver}\n" )
   f.close
   o = system( "/usr/bin/time -p ./doct_executable >> #{outpath} 2>&1")
   out = `cat #{outpath}`
-
 
   raise "execution error: '#{path}'\n#{out}\n" if !o
 
