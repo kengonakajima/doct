@@ -11,5 +11,7 @@ ver: verprint
 	gcc -v
 
 test:
-	$(CC) printf.c -o test_printf
-	./test_printf
+	$(CC) stdio.c -o test_stdio
+	./test_stdio
+	$(CC) varg.c -o test_varg
+	./test_varg
