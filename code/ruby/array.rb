@@ -638,7 +638,7 @@ assert( out == true )
 out = ["ant","bear","cat"].none? do |word| word.length >= 4 end
 assert( out == false )
 
-assert( [].none? == true )      # en: empty array gives true because starting state is true   ja: 初期状態がtrueから始まるので、配列に要素がない場合はtrueが返される
+assert( [].none? == true )      # en: empty array gives true because starting state is true | ja: 初期状態がtrueから始まるので、配列に要素がない場合はtrueが返される
 assert( [nil].none? == true )   # en: nil is evaluated as false 
 assert( [nil,false].none? == true ) 
 
