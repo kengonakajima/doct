@@ -9,7 +9,7 @@ def getVersion(path)
   return File.open(fn,"r").read.strip
 end
 
-def processFile(path)
+def getLangConfs(path)
   lang = nil
   langprefix = nil
   part_pattern = nil
@@ -35,7 +35,11 @@ def processFile(path)
     part_pattern = /^\/\/=\s?([a-zA-Z0-9\-_]+)\s?$/
     doc_pattern = /^\/\/==\s?([a-zA-Z0-9]+)\s?:\s?(.*)\s?$/    
   end
+  return lang, langprefix, part_pattern, doc_pattern
+end
 
+def processSource(path)
+  lang, langprefix, part_pattern, doc_pattern = getLangConfs(path)
   part_name = nil
   part_line = nil
   lineno = 0
@@ -100,12 +104,29 @@ def updateRelated()
 end
 
 
+def processResult(path)
+  path =~ /code\/([a-zA-Z]+)\/results\/([a-zA-Z]+)\/.*$/
+  langprefix = $1
+  envname = $2
+  bn = File.basename(path, ".out")
+  name = "#{langprefix}-#{bn}" 
+  doc = $db[ name ]
+
+  content = File.open(path,"r").read
+
+  STDERR.print "Result for #{name} : #{content.size} bytes\n"
+
+  doc["results"] = {}
+  doc["results"][envname] = content
+end
+
 #
 #
 #
 
 $db = {}
 
+# args
 outpath = ARGV[0]
 if !outpath then
   STDERR.print "Usage: gen.rb OUT_JSONM_FILE\n"
@@ -113,15 +134,25 @@ if !outpath then
 end
 
 start_at = Time.now
-files = `ls code/ruby/*.rb code/js/*.js code/lua/*.lua code/c/*.c`.split("\n")
 
+# read sources
+files = `ls code/ruby/*.rb code/js/*.js code/lua/*.lua code/c/*.c`.split("\n")
 files.each do |path|
   path.strip!
-  processFile(path)
+  processSource(path)
 end
 
+# read results
+files = `ls code/c/results/*/* code/ruby/results/*/* code/lua/results/*/* code/js/results/*/*`
+files.each do |path|
+  path.strip!
+  processResult(path)
+end
+
+# setup meta
 updateRelated()
 
+# output
 f = File.open( outpath,"w")
 f.write( JSON.pretty_generate($db) )
 f.close()

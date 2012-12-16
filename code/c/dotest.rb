@@ -75,7 +75,6 @@ def compile_exec(src, option )
   begin
     Dir.mkdir( "#{OUTDIR}/#{un}" )
   rescue
-    STDERR.print "#{OUTDIR} exists.\n"
   end
 
   # execute            
@@ -96,8 +95,6 @@ def compile_exec(src, option )
 
   # clean
   system( "rm -f doct_executable /tmp/gcc_out doct_body" )
-  
-  STDERR.print out, "\n"
 end
 
 
