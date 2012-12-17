@@ -1,6 +1,7 @@
 VERSION=$(shell ruby -e 'print RUBY_VERSION' )
+OSNAME=$(shell uname )
 
-test: ver test_$(VERSION) test_common bench_common
+test: ver test_$(VERSION) test_common bench_common bench_$(OSNAME)
 
 ver:
 	echo Ruby version is $(VERSION).
@@ -21,6 +22,9 @@ test_common:
 
 bench_common:
 	ruby framework.rb bench-simple-loop.rb
+
+bench_Darwin:
+	ruby framework.rb get-cpuname-osx.rb
 
 test_1.8.7:
 	ruby only187.rb

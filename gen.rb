@@ -117,8 +117,8 @@ def processResult(path)
   STDERR.print "Result for #{name} : #{content.size} bytes\n"
 
   if !doc then
-    STDERR.print "DOCNAME #{name} is not found!\n"
     p $db.keys
+    raise "DOCNAME #{name} is not found!\n" 
   end
   doc["results"] = {}
   doc["results"][envname] = content
