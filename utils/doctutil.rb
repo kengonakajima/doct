@@ -58,3 +58,8 @@ end
 def doct_output_end()
   $stdout = STDOUT
 end
+
+def println(*args)
+  args.push("\n")
+  print *args
+end
