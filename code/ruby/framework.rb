@@ -15,7 +15,7 @@ raise "execution error in '#{srcpath}' " if !retcode
 
 OUTDIR = "results"
 
-rubyver = `ruby -e 'print VERSION'`
+rubyver = `ruby -e 'print RUBY_VERSION'`
 
 bn = File.basename(srcpath,".rb")
 
