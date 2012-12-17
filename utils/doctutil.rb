@@ -41,3 +41,20 @@ def getSystemInfo()
   end
   return un, cpuinfo, osver
 end
+
+
+def doct_output_start(name)
+  uname, cpuinfo, osver = getSystemInfo()
+  f = File.open("results/#{RUBY_VERSION}/#{name}.out","w")
+  $stdout = f
+  print "= doct execresult result\n"
+  print "== system: #{uname}\n"
+  print "== cpuinfo: #{cpuinfo}\n"
+  print "== version: #{RUBY_VERSION}\n"
+  print "== program: ruby\n"
+  print "== os_version: #{osver}\n"
+end
+
+def doct_output_end()
+  $stdout = STDOUT
+end

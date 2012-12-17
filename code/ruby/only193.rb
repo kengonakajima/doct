@@ -102,3 +102,8 @@ assert( out == [ [1,4,7], [3,11,9,5] ] )
 enumerator = [1,4,7,3,11,9,5].slice_before do |x| x == 3 end
 out = enumerator.to_a 
 assert( out == [ [1,4,7], [3,11,9,5] ] )
+
+
+# __STOP_DOCT_PARSE__
+
+# TODO: File.absolute_path( "./file.rb" )
