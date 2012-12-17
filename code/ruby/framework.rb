@@ -8,7 +8,7 @@ srcpath = ARGV[0]
 
 STDERR.print "execute #{srcpath}...\n"
 
-retcode = system( "/usr/bin/time -p ruby #{srcpath} 2>&1 > /tmp/ruby_out" )
+retcode = system( "/usr/bin/time -p ruby #{srcpath}  > /tmp/ruby_out 2>&1" )
 
 raise "execution error in '#{srcpath}' " if !retcode 
 
