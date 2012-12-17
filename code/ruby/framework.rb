@@ -35,7 +35,7 @@ outpath = "#{OUTDIR}/#{rubyver}/#{bn}.out"
 
 uname, cpuinfo, osver = getSystemInfo()
 
-ver = `ruby -e 'print VERSION'`.strip
+ver = `ruby -e 'print RUBY_VERSION'`.strip
 
 # output
 f = File.open(outpath,"w")
