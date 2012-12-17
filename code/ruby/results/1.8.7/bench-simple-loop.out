@@ -1,4 +1,4 @@
-= doct test starts here
+= doct benchmark result
 == source: bench-simple-loop.rb
 == system: Darwin
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
@@ -8,5 +8,5 @@
 "done"
 49999995000000
 real         1.83
-user         1.83
+user         1.82
 sys          0.00

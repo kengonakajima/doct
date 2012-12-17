@@ -39,7 +39,7 @@ ver = `ruby -e 'print VERSION'`.strip
 # output
 f = File.open(outpath,"w")
 
-f.printf "= doct test starts here\n" 
+f.printf "= doct benchmark result\n" 
 f.printf "== source: #{srcpath}\n"
 f.printf "== system: #{uname}\n"
 f.printf "== cpuinfo: #{cpuinfo}\n"

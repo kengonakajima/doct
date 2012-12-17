@@ -51,7 +51,7 @@ def compile_exec(src, option )
   # execute            
   outpath = getOutPath(uname,src)
   f=File.open(outpath,"a+")
-  f.printf( "= doct test starts here\n" )
+  f.printf( "= doct benchmark result\n" )
   f.printf( "== source: #{src}\n" )
   f.printf( "== compiler: #{compiler}\n")
   f.printf( "== option: #{option}\n" )

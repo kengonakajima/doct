@@ -1,4 +1,4 @@
-= doct test starts here
+= doct benchmark result
 == source: bench-simple-loop.c
 == compiler: gcc
 == option: -O0
@@ -6,10 +6,10 @@
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
 == version: 4.2.1
 == os_vesion: 10.8.2
-real         0.21
-user         0.21
+real         0.20
+user         0.20
 sys          0.00
-= doct test starts here
+= doct benchmark result
 == source: bench-simple-loop.c
 == compiler: gcc
 == option: -O1
@@ -20,7 +20,7 @@ sys          0.00
 real         0.00
 user         0.00
 sys          0.00
-= doct test starts here
+= doct benchmark result
 == source: bench-simple-loop.c
 == compiler: gcc
 == option: -O2
@@ -31,7 +31,7 @@ sys          0.00
 real         0.00
 user         0.00
 sys          0.00
-= doct test starts here
+= doct benchmark result
 == source: bench-simple-loop.c
 == compiler: gcc
 == option: -O3
@@ -42,7 +42,7 @@ sys          0.00
 real         0.00
 user         0.00
 sys          0.00
-= doct test starts here
+= doct benchmark result
 == source: bench-simple-loop.c
 == compiler: gcc
 == option: -O6
