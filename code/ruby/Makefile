@@ -21,10 +21,10 @@ test_common:
 	ruby string.rb
 
 bench_common:
-	ruby framework.rb bench-simple-loop.rb
+	ruby framework.rb benchmark bench-simple-loop.rb
 
 bench_Darwin:
-	ruby framework.rb get-cpuname-osx.rb
+	ruby framework.rb execresult get-cpuname-osx.rb
 
 test_1.8.7:
 	ruby only187.rb

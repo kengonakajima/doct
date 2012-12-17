@@ -1,10 +1,11 @@
 require "../../utils/doctutil.rb"
 
-if ARGV.size != 1 then
-  STDERR.print "Usage: framework.rb RUBY_SRC_PATH\n"
+if ARGV.size != 2 then
+  STDERR.print "Usage: framework.rb RUNTYPE RUBY_SRC_PATH\n"
   exit 1
 end
-srcpath = ARGV[0]
+runtype = ARGV[0]
+srcpath = ARGV[1]
 
 STDERR.print "execute #{srcpath}...\n"
 
@@ -39,14 +40,13 @@ ver = `ruby -e 'print VERSION'`.strip
 # output
 f = File.open(outpath,"w")
 
-f.printf "= doct benchmark result\n" 
+f.printf "= doct #{runtype} result\n" 
 f.printf "== source: #{srcpath}\n"
 f.printf "== system: #{uname}\n"
 f.printf "== cpuinfo: #{cpuinfo}\n"
 f.printf "== version: #{ver}\n"
 f.printf "== program: ruby\n"
 f.printf "== os_version: #{osver}\n"
-f.printf "\n"
 f.write `cat /tmp/ruby_out`
 f.close
 
