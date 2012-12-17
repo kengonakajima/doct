@@ -7,6 +7,7 @@ before_install:
  - rvm list
  - rvm gemdir
  - sudo gem list
+ - ruby -e 'puts $LOAD_PATH'
 script: "make build"
 rvm:
  - 1.8.7
