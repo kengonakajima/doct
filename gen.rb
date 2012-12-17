@@ -148,7 +148,7 @@ end
 
 # read results
 files = `ls code/c/results/*/* code/ruby/results/*/* code/lua/results/*/* code/js/results/*/*`
-files.each do |path|
+files.split("\n").each do |path|
   path.strip!
   processResult(path)
 end

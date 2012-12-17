@@ -1,7 +1,7 @@
-== doct test starts here
-= source: simple-loop.rb
-= system: Darwin
-= cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
-= os_version: 10.8.2
+= doct test starts here
+== source: simple-loop.rb
+== system: Darwin
+== cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== os_version: 10.8.2
 "done"
 49999995000000
