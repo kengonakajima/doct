@@ -1,6 +1,8 @@
 # encoding: utf-8
 require "../../utils/doctutil.rb"
 
+require "json" # for debugging travis
+
 #= hash-literal-init
 x = { 1=>2, 2=>4, 3=>6 }
 assert( x[1] == 2 ) 
