@@ -12,6 +12,6 @@ assert( l2 == ( l1 + 1 ) )
 #= ja: スクリプトを実行中のRuby処理系のバージョン番号を定義済み変数から得て出力する
 doct_output_start "variable-version-string"
 
-puts RUBY_VERSION
+p RUBY_VERSION
 
 doct_output_end
