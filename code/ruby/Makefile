@@ -25,6 +25,7 @@ bench_common:
 
 bench_Darwin:
 	ruby framework.rb execresult get-cpuname-osx.rb
+	ruby framework.rb execresult get-os-version-number-osx.rb
 
 test_1.8.7:
 	ruby only187.rb
