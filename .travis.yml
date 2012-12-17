@@ -6,10 +6,10 @@ before_install:
  - which gem
  - rvm list
  - rvm gemdir
- - find ~/.rvm | grep 1.8 | grep json
- - find ~/.rvm | grep 1.9 | grep json
  - printenv
  - sudo gem list
+ - sudo gem install json
+ - sudo gem list 
  - ruby -e 'puts $LOAD_PATH'
 script: "make build"
 rvm:
