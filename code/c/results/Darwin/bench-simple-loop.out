@@ -4,9 +4,10 @@
 == option: -O0
 == system: Darwin
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 4.2.1
 == os_vesion: 10.8.2
-real         0.21
-user         0.21
+real         0.20
+user         0.20
 sys          0.00
 = doct test starts here
 == source: bench-simple-loop.c
@@ -14,6 +15,7 @@ sys          0.00
 == option: -O1
 == system: Darwin
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 4.2.1
 == os_vesion: 10.8.2
 real         0.00
 user         0.00
@@ -24,6 +26,7 @@ sys          0.00
 == option: -O2
 == system: Darwin
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 4.2.1
 == os_vesion: 10.8.2
 real         0.00
 user         0.00
@@ -34,6 +37,7 @@ sys          0.00
 == option: -O3
 == system: Darwin
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 4.2.1
 == os_vesion: 10.8.2
 real         0.00
 user         0.00
@@ -44,6 +48,7 @@ sys          0.00
 == option: -O6
 == system: Darwin
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 4.2.1
 == os_vesion: 10.8.2
 real         0.00
 user         0.00

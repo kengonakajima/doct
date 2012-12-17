@@ -40,6 +40,8 @@ def compile_exec(src, option )
   # get system info..
   uname, cpuinfo, osver = getSystemInfo()
 
+  ver = `./verprint`.strip!
+
   # prepare output directory
   begin
     Dir.mkdir( "#{OUTDIR}/#{uname}" )
@@ -55,6 +57,7 @@ def compile_exec(src, option )
   f.printf( "== option: #{option}\n" )
   f.printf( "== system: #{uname}\n" )
   f.printf( "== cpuinfo: #{cpuinfo}\n" )
+  f.printf( "== version: #{ver}\n" )
   f.printf( "== os_vesion: #{osver}\n" )
   f.close
   o = system( "/usr/bin/time -p ./doct_executable >> #{outpath} 2>&1")
