@@ -5,6 +5,7 @@ before_install:
  - sudo apt-get install -qq lua5.1
  - which gem
  - rvm list
+ - rvm gemdir
  - sudo gem install json
 script: "make build"
 rvm:
