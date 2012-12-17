@@ -7,7 +7,6 @@ before_install:
  - rvm list
  - rvm gemdir
  - sudo gem list
- - sudo gem install --verbose json
 script: "make build"
 rvm:
  - 1.8.7
