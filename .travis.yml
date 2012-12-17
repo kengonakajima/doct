@@ -7,6 +7,7 @@ before_install:
  - rvm list
  - rvm gemdir
  - find ~/.rvm
+ - printenv
  - sudo gem list
  - ruby -e 'puts $LOAD_PATH'
 script: "make build"
