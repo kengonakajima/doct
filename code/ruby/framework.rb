@@ -44,6 +44,7 @@ f.printf "== source: #{srcpath}\n"
 f.printf "== system: #{uname}\n"
 f.printf "== cpuinfo: #{cpuinfo}\n"
 f.printf "== version: #{ver}\n"
+f.printf "== program: ruby\n"
 f.printf "== os_version: #{osver}\n"
 f.write `cat /tmp/ruby_out`
 f.close
