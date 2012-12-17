@@ -10,4 +10,4 @@ def getOSXVersion()
   return "unknown"
 end
 
-puts getOSXVersion()
+p getOSXVersion()
