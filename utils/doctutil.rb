@@ -63,3 +63,11 @@ def println(*args)
   args.push("\n")
   print *args
 end
+
+def File.delete_force(*paths)
+  begin
+    return File.delete(*paths)
+  rescue
+  end
+end
+

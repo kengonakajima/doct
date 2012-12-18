@@ -7,5 +7,5 @@
 working directory: /Users/ringo/ucode/doct/code/ruby
 home: /Users/ringo
 relative-to-current: /Users/ringo/ucode/doct/code/ruby/file.rb
-relative-to-user/Users/ringo/readme.txt
-relative-to-specific-user/var/root/readme.txt
+relative-to-user: /Users/ringo/readme.txt
+relative-to-specific-user: /var/root/readme.txt
