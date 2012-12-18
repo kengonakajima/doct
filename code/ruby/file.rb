@@ -124,7 +124,7 @@ assert( File.ftype( "/bin" ) == "directory" )
 File.delete_force( "/tmp/etc_link_" ) # __SKIP_DOCT_PARSE__
 
 File.symlink( "/bin", "/tmp/etc_link_" )
-assert( File.ftype( "/tmp/etc_link" ) == "link" )
+assert( File.ftype( "/tmp/etc_link_" ) == "link" )
 
 
 
