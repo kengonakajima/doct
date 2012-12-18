@@ -290,7 +290,19 @@ File.open("/tmp/readme.txt","w") do |f|
   f.print "hello"
 end
 assert( File.writable?( "/tmp/readme.txt" ) )
+assert( File.writable_real?( "/tmp/readme.txt" ) ) # ja: 現在のユーザとグループで書き込みが可能か？
 
+
+#= file-test-zero-sized
+#== ja: ファイルが存在してサイズがゼロか調べる
+
+File.delete_force "/tmp/readme.txt" # __SKIP_DOCT_PARSE__
+
+assert( ! File.zero?( "/tmp/readme.txt" )  )  # ja: ファイルが存在しないときはfalse
+File.open("/tmp/readme.txt", "w" ) do |f| end  # ja: 空のファイルを作成
+assert( File.zero?( "/tmp/readme.txt" )  )  
+File.open("/tmp/readme.txt", "a+" ) do |f| f.print("hello") end 
+assert( ! File.zero?( "/tmp/readme.txt" )  )   # ja: 中身があるのでfalse
 
 
 # __STOP_DOCT_PARSE__
@@ -310,3 +322,5 @@ assert( File.writable?( "/tmp/readme.txt" ) )
 # TODO: File#umask
 # TODO: File#umask
 # TODO: File#world_readable? world_writable?
+
+# TODO: File : instance methods
