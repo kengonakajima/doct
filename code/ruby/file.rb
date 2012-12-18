@@ -212,7 +212,7 @@ end
 #= file-get-size
 #== ja: ファイルサイズを取得する
 sz = File.size( "./file.rb" )
-File.open("./file.rb","r") do |f| 
+File.open("./file.rb","rb") do |f| 
   assert( f.read.size == sz )
 end
 

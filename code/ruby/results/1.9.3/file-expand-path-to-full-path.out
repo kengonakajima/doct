@@ -1,0 +1,11 @@
+= doct execresult result
+== system: Darwin
+== cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 1.9.3
+== program: ruby
+== os_version: 10.8.2
+working directory: /Users/ringo/ucode/doct/code/ruby
+home: /Users/ringo
+relative-to-current: /Users/ringo/ucode/doct/code/ruby/file.rb
+relative-to-user: /Users/ringo/readme.txt
+relative-to-specific-user: /var/root/readme.txt
