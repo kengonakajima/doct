@@ -139,7 +139,7 @@ assert( File.file?( "/etc" ) == false )
 #== ja: 2つのファイルパスが同一のものを指しているかリンクをたどって調べる
 File.delete_force "/tmp/etc_link_" # __SKIP_DOCT_PARSE__
 File.symlink( "/etc", "/tmp/etc_link_" )
-assert( File.identical?( "/etc", "/tmp/etc_link" ) == true )
+assert( File.identical?( "/etc", "/tmp/etc_link_" ) == true )
 
 #= file-get-last-modified-time
 #== ja: ファイルの最終変更時刻を得る
