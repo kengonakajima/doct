@@ -104,6 +104,16 @@ out = enumerator.to_a
 assert( out == [ [1,4,7], [3,11,9,5] ] )
 
 
+#= file-get-size-193
+#== version: 1.9.3
+#== ja: ファイルのサイズをインスタンスメソッド経由で得る
+File.open( "/tmp/out", "w") do |f| f.print("hello world") end
+f = File.open( "/tmp/out", "r+" )
+assert( f.truncate(3) == 0 )
+assert( f.size == 3 )   # ja: クラスメソッド版は1.8.7にもある
+
+
+
 # __STOP_DOCT_PARSE__
 
 # TODO: File.absolute_path( "./file.rb" )

@@ -2,9 +2,12 @@
 require "../../utils/doctutil.rb"
 
 #= file-access-time
-#== ja: 
+#== ja: ファイルの最終アクセス時刻を得る
 doct_output_start "file-access-time"
-p File.atime( "/etc" )
+p File.atime( "/etc" ) # ja: クラスメソッド
+f = File.open("/etc")
+p f.atime()            # ja: インスタンスメソッド
+f.close
 doct_output_end
 
 #= file-basename
@@ -23,10 +26,17 @@ File.open( "/tmp/test_file_1", "w" ) do |f| end
 File.open( "/tmp/test_file_2", "w" ) do |f| end
 n = File.chown( owner, group, "/tmp/test_file_1", "/tmp/test_file_2" )
 assert( n == 2 )
+f = File.open( "/tmp/test_file_3", "w" )
+assert( f.chown( owner, group ) == 0 )   # ja: インスタンス変数を使う版
+f.close()
+
 
 #= file-change-time
 doct_output_start "file-change-time"
-p File.ctime( "/etc" )
+p File.ctime( "/etc" )  # ja: クラスメソッド
+f = File.open( "/etc" )  # ja: インスタンスメソッド
+p f.ctime
+f.close
 doct_output_end
 
 #= file-delete
@@ -271,8 +281,10 @@ File.open("/tmp/out", "w") do |f|
   assert( f.write("1234567890") == 10 )
 end
 assert( File.size("/tmp/out") == 10 )
-assert( File.truncate("/tmp/out", 5) == 0 )
+assert( File.truncate("/tmp/out", 5) == 0 )  
 assert( File.size("/tmp/out") == 5 )
+
+
 
 #= file-set-access-and-modification-time
 #== ja: ファイルの最終アクセス時刻と修正時刻を変更する
@@ -281,7 +293,11 @@ File.open( "/tmp/readme.txt", "w" ) do |f| f.print("hello") end
 
 File.utime( t0, t0, "/tmp/readme.txt" )
 assert( File.atime( "/tmp/readme.txt" ) == t0 )
-assert( File.mtime( "/tmp/readme.txt" ) == t0 )
+assert( File.mtime( "/tmp/readme.txt" ) == t0 ) # ja: クラスメソッド版
+f = File.open( "/tmp/readme.txt", "r" )
+assert( f.mtime() == t0 )   # ja: インスタンスメソッド版
+
+
 
 #= file-test-writable
 File.delete_force "/tmp/readme.txt" # __SKIP_DOCT_PARSE__
@@ -305,6 +321,20 @@ File.open("/tmp/readme.txt", "a+" ) do |f| f.print("hello") end
 assert( ! File.zero?( "/tmp/readme.txt" )  )   # ja: 中身があるのでfalse
 
 
+#= file-change-mode
+#== ja: ファイルのmodeを変更する
+File.delete_force "/tmp/readme.txt" # __SKIP_DOCT_PARSE__
+
+f = File.open( "/tmp/readme.txt", "w" )
+assert( f.chmod( 0644 ) == 0 )
+
+#= file-path
+f = File.open( "/etc" )
+assert( f.path == "/etc" )
+
+
+
+
 # __STOP_DOCT_PARSE__
 # TODO: File#fnmatch file-name-match-with-library-function-fnmatch
 # TODO: File#grpowned? file-test-group-ownership 
@@ -323,4 +353,7 @@ assert( ! File.zero?( "/tmp/readme.txt" )  )   # ja: 中身があるのでfalse
 # TODO: File#umask
 # TODO: File#world_readable? world_writable?
 
-# TODO: File : instance methods
+# TODO: File#flock
+# TODO: File#lstat
+# TODO: File#
+# TODO: File#

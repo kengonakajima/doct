@@ -6,8 +6,8 @@
 == cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
 == version: 4.2.1
 == os_vesion: 10.8.2
-real         0.20
-user         0.20
+real         0.21
+user         0.21
 sys          0.00
 = doct benchmark result
 == source: bench-simple-loop.c
