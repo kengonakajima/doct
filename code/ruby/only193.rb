@@ -113,6 +113,12 @@ assert( f.truncate(3) == 0 )
 assert( f.size == 3 )   # ja: クラスメソッド版は1.8.7にもある
 
 
+#= dir-get-home-directory
+doct_output_start "dir-get-home-directory"
+println "My home: ", Dir.home()
+println "User home: ", Dir.home("root")
+doct_output_end
+
 
 # __STOP_DOCT_PARSE__
 
