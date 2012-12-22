@@ -59,7 +59,7 @@ doct_output_end
 #= dir-delete
 #== ja: ディレクトリを削除する
 
-path = "#{Time.now.to_i}_#{Process.pid}.tmp"
+path = "/tmp/#{Time.now.to_i}_#{Process.pid}.tmp"
 assert( Dir.mkdir(path) == 0 )
 assert( Dir.unlink(path) == 0 )  # unlink
 
