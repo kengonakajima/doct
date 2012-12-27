@@ -207,6 +207,8 @@ a.collect! do |x| x*2 end
 assert( a == [2,4,6] )
 a.map! do |x| x/2 end
 assert( a == [1,2,3] )
+a.collect! do |x| if (x%2)==0 then nil else x end end
+assert( a == [1,nil,3] )
 
 #= array-combination
 a = [1, 2, 3, 4]
@@ -248,7 +250,7 @@ a = [ 1,2,2,3,3 ]
 assert( a.delete(2) == 2 )
 assert( a ==  [1,3,3] )
 assert( a.delete(9) == nil )
-assert( a.delete(9) { "not found" }   == "not found" )
+assert( a.delete(9) { "not found" }   == "not found" ) # ja: 見つからないときの値を指定
 
 #= array-delete-at-index
 #== ja: 位置を指定して配列の要素を削除
