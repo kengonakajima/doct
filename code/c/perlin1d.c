@@ -42,7 +42,7 @@ void perlin1D( float *out, int n ) {
         }
         out[i] = tot;
     }
-    for(i=0;i<8;i++) free(tables[i]);
+    for(i=0;i<table_n;i++) free(tables[i]);
 }
 
 void doct_test() {
