@@ -2,12 +2,22 @@ require "../../utils/doctutil.rb"
 
 OUTDIR = "results"
 
-if ARGV.size != 1 then 
-  STDERR.print "Usage: ruby dotest.rb C_SOURCE_FILE\n"
+if ARGV.size < 1 then 
+  STDERR.print "Usage: ruby dotest.rb C_SOURCE_FILE [OPTIONS]\n"
+  STDERR.print "OPTIONS: --skip-optimize-options : compile and execute with O0 only\n"
   exit 0
 end
 
 path = ARGV[0]
+
+enable_optimize = true
+
+ARGV.each do |arg|
+  if arg == "--skip-optimize-options" then 
+    enable_optimize = false
+  end
+end
+
 
 if ! File.exists?(path) then 
   STDERR.print "file not exist:#{path}\n"
@@ -72,7 +82,9 @@ end
 
 clean(path)
 compile_exec(path, "-O0" )
-compile_exec(path, "-O1")
-compile_exec(path, "-O2")
-compile_exec(path, "-O3")
-compile_exec(path, "-O6")
+if enable_optimize then
+  compile_exec(path, "-O1")
+  compile_exec(path, "-O2")
+  compile_exec(path, "-O3")
+  compile_exec(path, "-O6")
+end

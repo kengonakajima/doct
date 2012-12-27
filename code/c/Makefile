@@ -16,7 +16,7 @@ test:
 	./test_stdio
 	$(CC) varg.c -o test_varg
 	./test_varg
-	ruby dotest.rb perlin1d.c
+	ruby dotest.rb perlin1d.c --skip-optimize-options
 	ruby dotest.rb bench-simple-loop.c
 
 
