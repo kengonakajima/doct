@@ -1,6 +1,6 @@
 
 
-//= generate-1-dimensional-perlin-noise
+//= perlin1d
 //== ja: 特殊な最適化や最小化を使わずに、1次元のパーリンノイズを生成する
 //== en: generate 1-dimensional perlin noise with no special optimization or minimization
 
