@@ -35,7 +35,7 @@ def compile_exec(src, option )
   compiler = "gcc"
   o = system( "#{compiler} framework.c #{option} -o doct_executable > /tmp/gcc_out 2>&1 " )
   out = `cat /tmp/gcc_out`
-  raise "compile error : '#{path}'\n#{out}\n"  if !o
+  raise "compile error : '#{src}'\n#{out}\n"  if !o
 
   # get system info..
   uname, cpuinfo, osver = getSystemInfo()
