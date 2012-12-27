@@ -99,4 +99,34 @@ b=[]
 b.push(a) until (a+=1) == 5
 assert( b == [1,2,3,4] )
 
+#= control-structure-case
+#== ja: case文. 条件分岐を少ない行数で書く
+
+age = 4
+
+out = case age   
+      when "unknown"  # ja: 文字列
+        age
+      when 0         # ja: 数値
+        "newborn"
+      when 1 .. 2    # ja: 範囲
+        "baby"
+      when 3 .. 6
+        "little child"
+      when 7 .. 12
+        "child"
+      when 12 .. 18  # ja: 12はすでに "child" にマッチしている
+        "youth"
+      else
+        "adult"
+      end
+assert( out == "little child" )  # ja: 値を直接使える
+
+name = "quick silver fox jumps over the lazy dog"
+case name
+when /hello/   # ja: 正規表現も利用可能
+  assert(false)
+when /dog/
+  assert(true)
+end
 
