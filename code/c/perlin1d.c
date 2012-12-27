@@ -8,7 +8,6 @@
 #include <stdlib.h>
 void perlin1D( float *out, int n ) {
     float *tables[30];
-    int tablesz[30];
     int tn = n;
     int units[30];
     int table_n;
@@ -18,7 +17,6 @@ void perlin1D( float *out, int n ) {
     for(i=0;i<30;i++) {
         printf("allocate table sz:%d u:%d\n", tn ,u );        
         tables[i] = (float*) malloc((tn+1)*sizeof(float));
-        tablesz[i] = tn+1;
         units[i] = u;
         for(j=0;j<tn+1;j++) {
             tables[i][j] = (float)rand() / (float)(RAND_MAX);
