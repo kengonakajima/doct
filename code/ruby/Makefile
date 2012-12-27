@@ -7,6 +7,7 @@ ver:
 	echo Ruby version is $(VERSION).
 
 test_common:
+	ruby io.rb
 	ruby tempfile.rb
 	ruby dir.rb
 	ruby file.rb
