@@ -17,7 +17,7 @@ void perlin1D( float *out, int n ) {
     // make table
     for(i=0;i<30;i++) {
         printf("allocate table sz:%d u:%d\n", tn ,u );        
-        tables[i] = (float*) malloc(tn*sizeof(float));
+        tables[i] = (float*) malloc((tn+1)*sizeof(float));
         tablesz[i] = tn+1;
         units[i] = u;
         for(j=0;j<tn+1;j++) {

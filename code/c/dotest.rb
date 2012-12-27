@@ -60,7 +60,7 @@ def compile_exec(src, option )
   f.printf( "== version: #{ver}\n" )
   f.printf( "== os_vesion: #{osver}\n" )
   f.close
-  o = system( "/usr/bin/time -p ./doct_executable >> #{outpath} 2>&1")
+  o = system( "/usr/bin/time -p ./doct_executable > #{outpath} 2>&1")
   out = `cat #{outpath}`
 
   raise "execution error: '#{src}'\n#{out}\n" if !o
