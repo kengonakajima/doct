@@ -14,6 +14,7 @@ void perlin1D( float *out, int n ) {
     int table_n;
     int u = 1;
     int i,j;
+    // make table
     for(i=0;i<30;i++) {
         printf("allocate table sz:%d u:%d\n", tn ,u );        
         tables[i] = (float*) malloc(tn*sizeof(float));
@@ -27,17 +28,17 @@ void perlin1D( float *out, int n ) {
         table_n = i + 1;
         if( tn < 4 ) break;
     }
-
+    // output
     for(i=0;i<n;i++) {
         float tot = 0;
         for(j=0;j<table_n;j++){
             int ind_in_table = i / units[j];
             int mod = i % units[j];
             float t = (float)mod / (float)units[j];
-            float zoom = 0.5 / units[table_n-1-j];
             float val0 = tables[j][ind_in_table];
             float val1 = tables[j][ind_in_table+1];
-            float val = val0 * (1-t) + t * val1;
+            float val = val0 * (1-t) + t * val1; 
+            float zoom = 0.5 / units[table_n-1-j];
             tot += val * zoom;
         }
         out[i] = tot;
@@ -50,7 +51,8 @@ void doct_test() {
     int i,j;
     perlin1D( v, 100 );
     for(i=0;i<100;i++){
-        int n = v[i] * 50;
+        int height = 100;
+        int n = v[i] * height;
         for(j=0;j<n;j++) printf(" ");
         printf("*\n");
     }    
