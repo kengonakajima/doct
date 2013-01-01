@@ -130,3 +130,36 @@ when /dog/
   assert(true)
 end
 
+#= control-structure-for
+b=[]
+for i in [1,2,3] do
+    b.push(i)
+end
+assert( b == [1,2,3] )
+
+b = []
+for i in [1,2,3]    # ja: doは省略できる
+    b.push(i)
+end
+assert( b == [1,2,3] )
+
+
+#= control-structure-for-scope-differ
+#== ja: for文はeachとスコープが異なり、ブロックの外側でもローカル変数が見える
+for i in [1,2,3] do
+  j = i
+end
+assert(j == 3)
+
+[1,2,3].each do |i|
+  k = i
+end
+
+begin
+  p k   # exception!
+  assert(false)
+rescue
+  assert( $!.class == NameError )
+end
+
+
