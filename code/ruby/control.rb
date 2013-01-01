@@ -194,13 +194,7 @@ for i in (1..3) do
     redo if i == 2   # ja: 永久ループになる en: repeat infinitely
 end
 
-#= control-structure-retry
-b = []
-for i in (1..3) do
-    b.push(i)
-    break if b == [1,2,1,2,1,2,1,2,1,2]
-    retry if i == 2  # ja: 永久ループになる en: repeat infinitely
-end
+
 
 #= control-structure-exception-basic
 begin
