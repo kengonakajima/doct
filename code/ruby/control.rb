@@ -163,3 +163,67 @@ rescue
 end
 
 
+#= control-structure-loop-break-value
+#== ja: breakに引数を与えて、ループを抜けるときに値を返すことができる
+#== en: break quits a loop with a value 
+x = for i in (1..10) do
+  break 999 if i == 4 
+end
+assert( x == 999 )
+
+x = for i in (1..10) do
+  break if i == 4 
+end
+assert( x == nil )   # ja: 引数がないときはnil  en: give nil with no argument
+
+#= control-structure-next
+#== ja: ループを次の繰り返しに進める
+b=[]
+for i in (1..3) do
+    next if i == 2 
+    b.push(i)
+end
+assert( b == [1,3] )
+
+#= control-structure-redo
+#== ja: ループ条件のチェックを行わず、現在の繰り返しをやり直す
+b = []
+for i in (1..3) do
+    b.push(i)
+    break if b == [1,2,2,2,2,2]
+    redo if i == 2   # ja: 永久ループになる en: repeat infinitely
+end
+
+#= control-structure-retry
+b = []
+for i in (1..3) do
+    b.push(i)
+    break if b == [1,2,1,2,1,2,1,2,1,2]
+    retry if i == 2  # ja: 永久ループになる en: repeat infinitely
+end
+
+#= control-structure-exception-basic
+begin
+  raise "hoge"   # ja: 文字列を指定するとRuntimeErrorを発生
+rescue NameError
+  assert(false)
+rescue RuntimeError
+  assert(true)
+else
+  assert(false)
+ensure
+  must_be_executed = 1   # ja: ensure節はどんな場合でもかならず実行される
+end
+assert( must_be_executed == 1 )
+
+
+#= control-structure-exception-code-position
+#== ja: 例外が発生したソースコード位置のファイル名と行番号を得る
+doct_output_start "control-structure-exception-code-position"
+begin
+  raise "hoge"
+rescue
+  p $@
+end
+doct_output_end
+
