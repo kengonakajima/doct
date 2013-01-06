@@ -239,4 +239,3 @@ end
 assert( f() == "out" )
 
 
-
