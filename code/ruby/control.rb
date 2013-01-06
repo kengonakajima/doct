@@ -221,3 +221,22 @@ rescue
 end
 doct_output_end
 
+
+#= control-structure-return
+def f()
+  return 1,2,3
+end
+assert( f() == [1,2,3] )
+a,b,c = f()
+assert( a == 1 )
+assert( b == 2 )
+assert( c == 3 )
+
+#= control-structure-returned-function-value
+def f()
+  "out"
+end
+assert( f() == "out" )
+
+
+
