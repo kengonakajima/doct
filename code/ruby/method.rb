@@ -48,3 +48,33 @@ f { |a|
 
 doct_output_end
 
+#= method-variable-arguments
+#== ja: メソッドの可変長引数は配列として渡される
+def f( *args )
+  assert( args.class == Array )
+  args.join(".")       
+end
+
+assert( f( 1,2,3 ) == "1.2.3" )
+
+
+#= method-call-given-block-with-yield
+#== ja: yield
+
+def f()
+  yield 10,20
+  yield 20
+  yield 30,40
+end
+
+ary = []
+f { |a,b| 
+  ary.push( [a,b] )
+}
+
+assert( ary == [ [10,20], [20,nil], [30,40] ] )
+
+
+
+
+

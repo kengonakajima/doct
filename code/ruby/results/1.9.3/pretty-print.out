@@ -1,0 +1,16 @@
+= doct execresult result
+== system: Darwin
+== cpuinfo: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+== version: 1.9.3
+== program: ruby
+== os_version: 10.8.2
+[1, 2, 3, "xxxxxxxxx", "yyyyyyy", "zzzzzzz", {"a"=>8, "b"=>[11, 12, 13], "c"=>14}, 15, 16]
+[1,
+ 2,
+ 3,
+ "xxxxxxxxx",
+ "yyyyyyy",
+ "zzzzzzz",
+ {"a"=>8, "b"=>[11, 12, 13], "c"=>14},
+ 15,
+ 16]
